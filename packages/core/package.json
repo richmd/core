@@ -1,0 +1,45 @@
+{
+  "name": "@richmd/core",
+  "version": "0.0.1",
+  "description": "It is a core package of Richmd.",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./dist/richmdcss.css": {
+      "import": "./dist/richmdcss.css",
+      "require": "./dist/richmdcss.css"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist",
+    "./types"
+  ],
+  "volta": {
+    "node": "23.10.0"
+  },
+  "scripts": {
+    "build": "vite build && tsc",
+    "publish": "pnpm build && pnpm publish"
+  },
+  "keywords": [],
+  "author": "nappa <masa.yanagawa721@gmail.com>",
+  "license": "MIT",
+  "packageManager": "pnpm@10.6.5",
+  "devDependencies": {
+    "@types/katex": "^0.16.7",
+    "vite": "^6.2.2"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1",
+    "katex": "^0.16.21",
+    "typescript": "^5.8.2"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
