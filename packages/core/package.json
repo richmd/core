@@ -22,25 +22,19 @@
   },
   "scripts": {
     "build": "vite build && tsc",
-    "publish": "pnpm publish",
-    "prepare": "pnpm build"
+    "publish": "pnpm build && pnpm publish"
   },
   "keywords": [],
   "author": "nappa <masa.yanagawa721@gmail.com>",
   "license": "MIT",
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16",
     "@types/katex": "^0.16.7",
     "vite": "^6.2.2"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.0.15",
     "highlight.js": "^11.11.1",
     "katex": "^0.16.21",
-    "node-html-parser": "^7.0.1",
-    "tailwind-variants": "^1.0.0",
-    "tailwindcss": "^4.0.15",
     "typescript": "^5.8.2"
   },
   "pnpm": {
