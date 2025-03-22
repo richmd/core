@@ -15,14 +15,10 @@ $ pnpm add @richmd/core
 ```
 
 ### Using React
-```bash
-$ pnpm add @richmd/react
-```
+For more details, please see the README of [@richmd/react](https://github.com/richmd/react).
 
 ### Using Vue
-```bash
-$ pnpm add @richmd/core @richmd/vue
-```
+For more details, please see the README of [@richmd/vue](https://github.com/richmd/vue).
 
 ## Retrieve Abstract Syntax Tree (AST) Data
 You can retrieve Abstract Syntax Tree (AST) data using the `parseTree` method.
