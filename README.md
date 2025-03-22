@@ -1,2 +1,2 @@
-# core
-This is @richmd/core package.
+# Richmd
+FEATURE NEW RICHMD.

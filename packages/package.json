@@ -1,0 +1,23 @@
+{
+  "name": "richmd",
+  "version": "0.0.1",
+  "description": "Richmd is a tool for making Rich contents Markdown language.",
+  "volta": {
+    "node": "23.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "nappa <masa.yanagawa721@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/richmdjs/richmd.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "turbo": "^2.4.4"
+  }
+}

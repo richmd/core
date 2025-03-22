@@ -1,0 +1,362 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+.body {
+  @apply font-sans w-full text-base leading-relaxed my-2.5 mx-auto flex flex-col text-[#262626];
+}
+
+.body > *:first-child {
+  @apply mt-0 !important;
+}
+
+.body > *:last-child {
+  @apply mb-0 !important;
+}
+
+.a {
+  @apply text-[#4183C4];
+}
+
+.a.absent {
+  @apply text-[#cc0000];
+}
+
+.a.anchor {
+  @apply block pl-[30px] -ml-[30px] cursor-pointer absolute top-0 left-0 bottom-0;
+}
+
+.bold {
+  @apply font-bold;
+}
+
+.italic {
+  @apply italic;
+}
+
+.line-through {
+  @apply line-through;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  @apply my-5 py-0 font-bold antialiased cursor-text relative;
+}
+
+.h1 tt, .h1 code {
+  @apply text-inherit;
+}
+
+.h2 tt, .h2 code {
+  @apply text-inherit;
+}
+
+.h3 tt, .h3 code {
+  @apply text-inherit;
+}
+
+.h4 tt, .h4 code {
+  @apply text-inherit;
+}
+
+.h5 tt, .h5 code {
+  @apply text-inherit;
+}
+
+.h6 tt, .h6 code {
+  @apply text-inherit;
+}
+
+.h1 {
+  @apply text-[38px];
+}
+
+.h2 {
+  @apply text-[28px] pb-[5px] border-b border-[#cccccc];
+}
+
+.h3 {
+  @apply text-[24px];
+}
+
+.h4 {
+  @apply text-[20px];
+}
+
+.h5 {
+  @apply text-[18px];
+}
+
+.h6 {
+  @apply text-[#777777] text-[18px];
+}
+
+.span, .blockquote, .ul, .ol, .dl, .table, pre {
+  @apply my-[5px];
+}
+
+.span {
+  @apply m-0;
+}
+
+.ol {
+  @apply my-[5px];
+}
+
+.ul {
+  @apply my-[5px];
+}
+
+.li {
+  @apply my-[5px] whitespace-pre-line;
+}
+
+hr {
+  @apply border border-solid border-[#cccccc] p-0;
+}
+
+.br {
+  @apply block content-[""] p-[6px] m-0;
+}
+
+.inline-br {
+  @apply block content-[""] p-0 m-0;
+}
+
+body > .h2:first-child {
+  @apply mt-0 pt-0;
+}
+
+body > .h1:first-child {
+  @apply mt-0 pt-0;
+}
+
+body > .h1:first-child + h2 {
+  @apply mt-0 pt-0;
+}
+
+body > .h3:first-child, body > .h4:first-child, body > .h5:first-child, body > .h6:first-child {
+  @apply mt-0 pt-0;
+}
+
+.a:first-child h1, .a:first-child h2, .a:first-child h3, .a:first-child h4, .a:first-child h5, .a:first-child .h6 {
+  @apply mt-0 pt-0;
+}
+
+.h1 .span, .h2 .span, .h3 .span, .h4 .span, .h5 .span, .h6 .span {
+  @apply mt-0;
+}
+
+.li .span.first {
+  @apply inline-block;
+}
+
+.ul, .ol {
+  @apply pl-5;
+}
+
+.ul :first-child, .ol :first-child {
+  @apply mt-0;
+}
+
+.ul :last-child, .ol :last-child {
+  @apply mb-0;
+}
+
+.dl {
+  @apply p-0;
+}
+
+.dl .dt {
+  @apply text-sm font-bold italic p-0 mt-[15px] mb-[5px];
+}
+
+.dl .dt:first-child {
+  @apply p-0;
+}
+
+.dl .dt > :first-child {
+  @apply mt-0;
+}
+
+.dl .dt > :last-child {
+  @apply mb-0;
+}
+
+.dl .dd {
+  @apply m-0 mb-[15px] p-0 pl-[15px];
+}
+
+.dl .dd > :first-child {
+  @apply mt-0;
+}
+
+.dl .dd > :last-child {
+  @apply mb-0;
+}
+
+.blockquote {
+  @apply border-l-4 border-[#dddddd] py-0 px-[15px] text-[#777777];
+}
+
+.blockquote .span {
+  @apply text-[#777777];
+}
+
+.blockquote .inline-code {
+  @apply mx-[2px] py-0 px-[5px] whitespace-nowrap border border-[#eaeaea] bg-[#f8f8f8] text-[#666666] font-mono rounded;
+}
+
+.blockquote > :first-child {
+  @apply mt-0;
+}
+
+.blockquote > :last-child {
+  @apply mb-0;
+}
+
+.table {
+  @apply p-0;
+}
+
+.table tr {
+  @apply border-t border-[#cccccc] bg-white m-0 p-0;
+}
+
+.table tr:nth-child(2n) {
+  @apply bg-[#f8f8f8];
+}
+
+.table tr th {
+  @apply font-bold border border-[#cccccc] text-left m-0 py-[6px] px-[13px];
+}
+
+.table tr td {
+  @apply border border-[#cccccc] text-left m-0 py-[6px] px-[13px];
+}
+
+.table tr th :first-child, .table tr td :first-child {
+  @apply mt-0;
+}
+
+.table tr th :last-child, .table tr td :last-child {
+  @apply mb-0;
+}
+
+.img {
+  @apply max-w-full;
+}
+
+.video {
+  @apply w-[640px] h-[360px] bg-black;
+}
+
+pre code {
+  @apply m-0 p-0 whitespace-pre-wrap border-none bg-transparent;
+}
+
+.highlight pre {
+  @apply bg-[#f8f8f8] border border-[#dddddd] text-[15px] leading-[19px] overflow-auto font-sans py-4 px-5 rounded;
+}
+
+pre {
+  @apply text-base leading-[19px] overflow-auto py-[5px] px-4 rounded;
+}
+
+pre code, pre tt {
+  @apply bg-transparent border-none;
+}
+
+pre code br {
+  @apply block content-[""];
+}
+
+.code-block {
+  @apply my-5 bg-[#030e2b] p-0 rounded relative;
+}
+
+.filename {
+  @apply bg-[rgba(255,255,255,0.3)] text-white text-[13px] py-[5px] px-[10px] m-0 top-0 absolute rounded-tl rounded-br;
+}
+
+.code {
+  @apply text-white border-none text-[15px] leading-[19px] overflow-auto py-[5px] px-5 rounded;
+}
+
+.checklist {
+  @apply list-none p-0;
+}
+
+input[type="checkbox"] {
+  @apply m-0 mx-[5px];
+}
+
+.math {
+  @apply bg-white border-none overflow-auto py-[5px] px-4;
+}
+
+.katex {
+  @apply text-[22px];
+}
+
+.katex-center {
+  @apply flex justify-center;
+}
+
+.message {
+  @apply my-5 text-sm leading-[19px] overflow-auto p-4 rounded flex items-center;
+}
+
+.message-box {
+  @apply flex flex-col justify-center m-0;
+}
+
+.message-danger {
+  @apply bg-[#ffb5b5] border-l-[10px] border-[#ff6969] text-[#d13d3d];
+}
+
+.message-icon-danger {
+  @apply bg-[url("../images/danger.svg")] w-5 h-5 bg-contain bg-no-repeat;
+}
+
+.message-warning {
+  @apply bg-[#ffeca6] border-l-[10px] border-[#ffc44f] text-[#857111];
+}
+
+.message-icon-warning {
+  @apply bg-[url("../images/warning.svg")] w-5 h-5 bg-contain bg-no-repeat;
+}
+
+.message-info {
+  @apply bg-[#b5e8ff] border-l-[10px] border-[#4fb6ff] text-[#216a94];
+}
+
+.message-icon-info {
+  @apply bg-[url("../images/info.svg")] w-5 h-5 bg-contain bg-no-repeat;
+}
+
+.message-success {
+  @apply bg-[#a4fcc6] border-l-[10px] border-[#4ad981] text-[#1e9656];
+}
+
+.message-icon-success {
+  @apply bg-[url("../images/success.svg")] w-5 h-5 bg-contain bg-no-repeat;
+}
+
+.message-default {
+  @apply bg-[#f0f0f0] border-l-[10px] border-[#b8b8b8] text-[#525252];
+}
+
+.inline-code {
+  @apply mx-[2px] py-0 px-[5px] whitespace-nowrap border border-[#eaeaea] bg-[#f8f8f8] text-[#24374a] font-mono rounded;
+}
+
+.codefont {
+  @apply font-mono;
+}
+
+.details {
+  @apply border border-solid border-[#b8b8b8] rounded py-[15px] px-5;
+}
+
+.summary {
+  @apply rounded text-base cursor-pointer font-bold;
+}

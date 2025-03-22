@@ -1,0 +1,457 @@
+@import "./normalize.css";
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+.richmd {
+  font-family: -apple-system,"BlinkMacSystemFont","Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif,"Segoe UI Emoji";
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  color: #262626;
+}
+
+.richmd > *:first-child {
+  margin-top: 0 !important; 
+}
+.richmd > *:last-child {
+  margin-bottom: 0 !important; 
+} 
+
+.richmd .a {
+  color: #4183C4;
+}
+.richmd .a.absent {
+  color: #cc0000;
+}
+.richmd .a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; 
+}
+
+.richmd .bold {
+  font-weight: bold;
+}
+
+.richmd .italic {
+  font-style: italic;
+}
+
+.richmd .line-through {
+  text-decoration: line-through;
+}
+
+.richmd .h1, .richmd .h2, .richmd .h3, .richmd .h4, .richmd .h5, .richmd .h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+.richmd .h1 tt, .richmd .h1 code {
+  font-size: inherit; 
+}
+
+.richmd .h2 tt, .richmd .h2 code {
+  font-size: inherit; 
+}
+
+.richmd .h3 tt, .richmd .h3 code {
+  font-size: inherit; 
+}
+
+.richmd .h4 tt, .richmd .h4 code {
+  font-size: inherit; 
+}
+
+.richmd .h5 tt, .richmd .h5 code {
+  font-size: inherit; 
+}
+
+.richmd .h6 tt, .richmd .h6 code {
+  font-size: inherit; 
+}
+
+.richmd .h1 {
+  font-size: 38px;
+}
+
+.richmd .h2 {
+  font-size: 28px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.richmd .h3 {
+  font-size: 24px; 
+}
+
+.richmd .h4 {
+  font-size: 20px; 
+}
+
+.richmd .h5 {
+  font-size: 18px; 
+}
+
+.richmd .h6 {
+  color: #777777;
+  font-size: 18px; 
+}
+
+.richmd .span, .richmd .blockquote, .richmd .ul, .richmd .ol, .richmd .dl, .richmd .table, .richmd pre {
+  margin: 5px 0; 
+}
+
+.richmd .span {
+  margin: 0;
+}
+
+.richmd .ol {
+  margin: 5px 0;
+}
+
+.richmd .ul {
+  margin: 5px 0;
+}
+
+.richmd .li {
+  margin: 5px 0;
+  white-space: pre-line;
+}
+
+.richmd hr {
+  border: solid 1px #cccccc;
+  padding: 0; 
+}
+
+.richmd .br {
+  display: block;
+  content: "";
+  padding: 6px;
+  margin: 0;
+}
+
+.richmd .inline-br {
+  display: block;
+  content: "";
+  padding: 0;
+  margin: 0;
+}
+
+.richmd .a:first-child h1, .richmd .a:first-child h2, .richmd .a:first-child h3, .richmd .a:first-child h4, .richmd .a:first-child h5, .richmd .a:first-child .h6 {
+  margin-top: 0;
+  padding-top: 0; 
+}
+
+.richmd .h1 .span, .richmd .h2 .span, .richmd .h3 .span, .richmd .h4 .span, .richmd .h5 .span, .richmd .h6 .span {
+  margin-top: 0; 
+}
+
+.richmd .li .span.first {
+  display: inline-block; 
+}
+
+.richmd .ul, .richmd .ol {
+  padding-left: 20px;
+}
+
+.richmd .ul :first-child, .richmd .ol :first-child {
+  margin-top: 0; 
+}
+
+.richmd .ul :last-child, .richmd .ol :last-child {
+  margin-bottom: 0; 
+}
+
+.richmd .dl {
+  padding: 0; }
+  .richmd .dl .dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    .richmd .dl .dt:first-child {
+      padding: 0; }
+    .richmd .dl .dt > :first-child {
+      margin-top: 0; }
+    .richmd .dl .dt > :last-child {
+      margin-bottom: 0; }
+  .richmd .dl .dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    .richmd .dl .dd > :first-child {
+      margin-top: 0; }
+    .richmd .dl .dd > :last-child {
+      margin-bottom: 0; }
+
+.richmd .blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777;
+}
+
+.richmd .blockquote .span {
+  color: #777777; 
+}
+
+.richmd .blockquote .inline-code {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  color: #666666;
+  font-family: 'Source Code Pro', monospace;
+  border-radius: 3px;
+}
+
+.richmd .blockquote > :first-child {
+  margin-top: 0; 
+}
+
+.richmd .blockquote > :last-child {
+  margin-bottom: 0; 
+}
+
+.richmd .table {
+  padding: 0; }
+  .richmd .table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    .richmd .table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    .richmd .table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    .richmd .table tr td {
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    .richmd .table tr th :first-child, .richmd .table tr td :first-child {
+      margin-top: 0; }
+    .richmd .table tr th :last-child, .richmd .table tr td :last-child {
+      margin-bottom: 0; }
+
+.richmd .img {
+  max-width: 100%; 
+}
+
+.richmd .video {
+  width: 640px;
+  height: 360px;
+  background-color: #000;
+}
+
+.richmd pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  border: none;
+  background: transparent; 
+}
+
+.richmd .highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #dddddd;
+  font-size: 15px;
+  line-height: 19px;
+  overflow: auto;
+  font-family: -apple-system,"BlinkMacSystemFont","Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif,"Segoe UI Emoji";
+  padding: 16px 20px;
+  border-radius: 5px; }
+
+.richmd pre {
+  font-size: 16px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 5px 16px;
+  border-radius: 5px; 
+}
+
+.richmd pre code, .richmd pre tt {
+  background-color: transparent;
+  border: none; 
+}
+
+.richmd pre code br {
+  display: block;
+  content: "";
+}
+
+.richmd .code-block {
+  margin: 20px 0;
+  background-color: #030e2b;
+  padding: 0;
+  border-radius: 5px;
+  position: relative;
+}
+
+.richmd .filename {
+  background-color: rgba(255, 255, 255, .3);
+  color: #fff;
+  font-size: 13px;
+  padding: 5px 10px;
+  margin: 0;
+  top: 0;
+  position: absolute;
+  border-radius: 5px 0 5px 0;
+}
+
+.richmd .code {
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 5px 20px;
+  border-radius: 3px;
+}
+
+.richmd .checklist {
+  list-style-type: none;
+  padding: 0;
+}
+
+.richmd input[type="checkbox"] {
+  margin: 0 5px;
+}
+
+.richmd .math {
+  background-color: #fff;
+  border: none;
+  overflow: auto;
+  padding: 5px 16px;
+}
+
+.richmd .katex { 
+  font-size: 22px;
+}
+
+.richmd .katex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.richmd .message {
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 16px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.richmd .message-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+}
+
+.richmd .message-danger {
+  background-color: #ffb5b5;
+  border-left: solid 10px #ff6969;
+  color: #d13d3d;
+}
+
+.richmd .message-icon-danger {
+  background-image: url("../images/danger.svg");
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.richmd .message-warning {
+  background-color: #ffeca6;
+  border-left: solid 10px #ffc44f;
+  color: #857111;
+}
+
+.richmd .message-icon-warning {
+  background-image: url("../images/warning.svg");
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.richmd .message-info {
+  background-color: #b5e8ff;
+  border-left: solid 10px #4fb6ff;
+  color:#216a94;
+}
+
+.richmd .message-icon-info {
+  background-image: url("../images/info.svg");
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.richmd .message-success {
+  background-color: #a4fcc6;
+  border-left: solid 10px #4ad981;
+  color: #1e9656;
+}
+
+.richmd .message-icon-success {
+  background-image: url("../images/success.svg");
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.richmd .message-default {
+  background-color: #f0f0f0;
+  border-left: solid 10px #b8b8b8;
+  color:#525252;
+}
+
+.richmd .inline-code {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  color: #24374a;
+  font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace,"Segoe UI Emoji";
+  border-radius: 3px;
+}
+
+.richmd .codefont {
+  font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace,"Segoe UI Emoji";
+}
+
+.richmd .details {
+  border: solid 1px #b8b8b8;
+  border-radius: 5px;
+  padding: 15px 20px;
+}
+
+.richmd .summary {
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
