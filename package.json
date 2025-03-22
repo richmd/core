@@ -1,6 +1,6 @@
 {
   "name": "@richmd/core",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "It is a core package of Richmd.",
   "exports": {
     ".": {
@@ -29,7 +29,15 @@
     "build": "vite build && tsc",
     "prepare": "pnpm build"
   },
-  "keywords": [],
+  "keywords": [
+    "markdown",
+    "frontend",
+    "richmd",
+    "katex",
+    "html",
+    "react",
+    "vue"
+  ],
   "author": "nappa <masa.yanagawa721@gmail.com>",
   "repository": {
     "type": "git",
