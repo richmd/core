@@ -1,6 +1,6 @@
 {
   "name": "@richmd/core",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "It is a core package of Richmd.",
   "exports": {
     ".": {
@@ -33,12 +33,12 @@
   "author": "nappa <masa.yanagawa721@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/richmd/richmd-next.git"
+    "url": "git+https://github.com/richmd/core.git"
   },
   "bugs": {
-    "url": "https://github.com/richmd/richmd-next.git/issues"
+    "url": "https://github.com/richmd/core.git/issues"
   },
-  "homepage": "https://github.com/richmd/richmd-next.git",
+  "homepage": "https://github.com/richmd/core.git",
   "license": "MIT",
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
