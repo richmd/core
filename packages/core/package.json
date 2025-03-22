@@ -1,18 +1,23 @@
 {
   "name": "@richmd/core",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "It is a core package of Richmd.",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
     },
     "./dist/richmdcss.css": {
       "import": "./dist/richmdcss.css",
       "require": "./dist/richmdcss.css"
+    },
+    "./dist/index.d.ts": {
+      "import": "./dist/index.d.ts",
+      "require": "./dist/index.d.ts"
     }
   },
-  "types": "./dist/core.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "./dist",
     "./types"
