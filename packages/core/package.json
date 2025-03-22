@@ -21,8 +21,7 @@
     "node": "23.10.0"
   },
   "scripts": {
-    "build": "vite build && tsc",
-    "publish": "pnpm publish"
+    "build": "vite build && tsc"
   },
   "keywords": [],
   "author": "nappa <masa.yanagawa721@gmail.com>",
