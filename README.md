@@ -1,4 +1,4 @@
-# [FEATURE] Richmd Next
+# [FEATURE] Richmd v3
 <!-- ![NPM](https://img.shields.io/npm/l/richmd)
 ![npm](https://img.shields.io/npm/v/richmd)
 ![npm](https://img.shields.io/npm/dw/richmd) -->
