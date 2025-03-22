@@ -21,10 +21,12 @@
     "node": "23.10.0"
   },
   "scripts": {
-    "build": "vite build && tsc"
+    "build": "vite build && tsc",
+    "publish": "pnpm publish",
+    "prepare": "pnpm build"
   },
   "keywords": [],
-  "author": "",
+  "author": "nappa <masa.yanagawa721@gmail.com>",
   "license": "MIT",
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
