@@ -7,7 +7,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "richmd.core",
       fileName: (format) => `index.${format}.js`,
-      cssFileName: "richmdcss",
+      cssFileName: "richmd",
     },
   },
 });
