@@ -10,6 +10,8 @@ Richmd is a tool for making Rich contents Markdown language.
 
 ## Installation
 
+### Using Core Only
+
 ```bash
 $ pnpm add @richmd/core
 ```
