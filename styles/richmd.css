@@ -1,5 +1,5 @@
 @import "./normalize.css";
 @import "./style.css";
-@import "../lib/katex/katex.min.css";
-@import "../lib/highlight/styles/atom-one-dark.min.css";
+@import "../utils/katex/katex.min.css";
+@import "../utils/highlight/styles/atom-one-dark.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
