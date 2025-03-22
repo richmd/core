@@ -26,6 +26,14 @@
   },
   "keywords": [],
   "author": "nappa <masa.yanagawa721@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/richmdjs/richmd-next.git"
+  },
+  "bugs": {
+    "url": "https://github.com/richmdjs/richmd-next.git/issues"
+  },
+  "homepage": "https://github.com/richmdjs/richmd-next.git",
   "license": "MIT",
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
