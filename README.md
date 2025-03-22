@@ -1,4 +1,4 @@
-# [FEATURE] Richmd v3
+# Richmd v3
 <!-- ![NPM](https://img.shields.io/npm/l/richmd)
 ![npm](https://img.shields.io/npm/v/richmd)
 ![npm](https://img.shields.io/npm/dw/richmd) -->
@@ -11,24 +11,25 @@ Richmd is a tool for making Rich contents Markdown language.
 ## Installation
 
 ```bash
-# use npm
-$ npm install @richmd/core
-
-# use yarn
-$ yarn add @richmd/core
+$ pnpm add @richmd/core
 ```
 
-## Usage
-- [Usage for React](./docs/usage-react.md)
-- [Usage for Vue](./docs/usage-vue.md)
-- [Usage Webpack](./docs/Setup-webpack.md)
+### Using React
+```bash
+$ pnpm add @richmd/react
+```
 
-### Retrieve Abstract Syntax Tree (AST) Data
+### Using Vue
+```bash
+$ pnpm add @richmd/core @richmd/vue
+```
+
+## Retrieve Abstract Syntax Tree (AST) Data
 You can retrieve Abstract Syntax Tree (AST) data using the `parseTree` method.
 This is useful for customizing code generation on your own.
 
 ```js
-import { parseTree } from 'richmd';
+import { parseTree } from '@richmd/core';
 
 const text = `# aaaa
 ## aaaaa
