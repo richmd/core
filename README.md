@@ -8,23 +8,43 @@ Richmd is a tool for making Rich contents Markdown language.
 
 ![Richmd](./docs/images/preview.png)
 
-## Installation
+## Usage
+In general, installing `@richmd/core` is not necessary. For actual usage, we recommend using one of the following packages instead.
 
-### Using Core Only
+### JavaScript (TypeScript)
+For more details, please see the README of [@richmd/js](https://github.com/richmd/js).
 
-```bash
+```sh
+pnpm add @richmd/js
+```
+
+### React
+For more details, please see the README of [@richmd/react](https://github.com/richmd/react).
+
+```sh
+pnpm add @richmd/react
+```
+
+### Vue
+For more details, please see the README of [@richmd/vue](https://github.com/richmd/vue).
+
+```sh
+pnpm add @richmd/vue
+```
+
+## Methods
+### `parseTree()`
+
+You can retrieve Abstract Syntax Tree (AST) data using the `parseTree` method.
+This is useful for customizing code generation on your own.
+
+To use the parser standalone, you need to install `@richmd/core`.
+
+```sh
 $ pnpm add @richmd/core
 ```
 
-### Using React
-For more details, please see the README of [@richmd/react](https://github.com/richmd/react).
-
-### Using Vue
-For more details, please see the README of [@richmd/vue](https://github.com/richmd/vue).
-
-## Retrieve Abstract Syntax Tree (AST) Data
-You can retrieve Abstract Syntax Tree (AST) data using the `parseTree` method.
-This is useful for customizing code generation on your own.
+#### Sample
 
 ```js
 import { parseTree } from '@richmd/core';
@@ -37,6 +57,12 @@ const text = `# aaaa
 
 const ast = parseTree(text);
 ```
+
+### [Deprecated] `richmd()`
+Using `richmd()` allows you to convert Markdown to HTML, but it is no longer recommended to import it directly from `@richmd/core`.
+While there are currently no restrictions in place to support migration from v2, this method is expected to be removed in a future update.
+
+If you need HTML conversion, please use an extension package such as `@richmd/js`.
 
 
 ## Markdown Syntax
