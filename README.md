@@ -1,7 +1,8 @@
 # Richmd v3
-<!-- ![NPM](https://img.shields.io/npm/l/richmd)
-![npm](https://img.shields.io/npm/v/richmd)
-![npm](https://img.shields.io/npm/dw/richmd) -->
+
+![NPM License](https://img.shields.io/npm/l/%40richmd%2Fcore)
+![NPM Version](https://img.shields.io/npm/v/%40richmd%2Fcore)
+![NPM Downloads](https://img.shields.io/npm/dw/%40richmd%2Fcore)
 
 ## What is Richmd?
 Richmd is a tool for making Rich contents Markdown language.
