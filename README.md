@@ -1,4 +1,4 @@
-# Richmd v3
+# Richmd v4
 
 ![NPM License](https://img.shields.io/npm/l/%40richmd%2Fcore)
 ![NPM Version](https://img.shields.io/npm/v/%40richmd%2Fcore)
