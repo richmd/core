@@ -72,9 +72,14 @@ export const parser = (str: string) => {
     }
 
     if (char === "\n") {
-      if (ast.length === 0 && pageMode === PAGE_MODE_DEFAULT && SLIDE_MODE_REGEX.test(line)) {
-        pageMode = PAGE_MODE_SLIDE;
-        mode = MODE_SLIDE;
+      if (ast.length === 0 && pageMode === PAGE_MODE_DEFAULT) {
+        if (SLIDE_MODE_REGEX.test(line)) {
+          ast.push(new nodes.Mode("slide"));
+          pageMode = PAGE_MODE_SLIDE;
+          mode = MODE_SLIDE;
+        } else {
+          ast.push(new nodes.Mode("default"));
+        }
       } else if (pageMode === PAGE_MODE_SLIDE) {
         if (mode === MODE_SLIDE && START_SLIDE_CENTER_REGEX.test(line)) {
           parseParagraph(stack);
@@ -97,7 +102,7 @@ export const parser = (str: string) => {
           mode = MODE_SLIDE;
         }
         stack = "";
-      } 
+      }
       
       if (mode === MODE_DEFAULT && START_DETAILS_REGEX.test(line)) {
         parseParagraph(stack);

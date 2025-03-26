@@ -2,6 +2,16 @@ import Node from "./Node";
 import inlineParser from "../parser/inline";
 import inline from "./inline";
 
+
+class Mode extends Node {
+  mode: string;
+
+  constructor(mode: string) {
+    super("mode", "block");
+    this.mode = mode;
+  }
+}
+
 class Import extends Node {
   value: string;
 
@@ -245,4 +255,5 @@ export default {
   EndTag,
   StartSlide,
   EndSlide,
+  Mode,
 };
