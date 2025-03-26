@@ -287,7 +287,7 @@ export const parser = (str: string) => {
       line += char;
     }
   }
-  if (pageMode === PAGE_MODE_DEFAULT) {
+  if (mode !== MODE_SLIDE) {
     parseParagraph(stack.slice(0, -1));
   }
   return ast;
