@@ -81,22 +81,22 @@ export const parser = (str: string) => {
           ast.push(new nodes.Mode("default"));
         }
       } else if (pageMode === PAGE_MODE_SLIDE) {
-        if (mode === MODE_SLIDE && START_SLIDE_CENTER_REGEX.test(line)) {
+        if (START_SLIDE_CENTER_REGEX.test(line)) {
           parseParagraph(stack);
           const slideData = line.replace(/\:\-{3}:/, "").trim();
           ast.push(new nodes.StartSlide("center", slideData));
           mode = MODE_DEFAULT;
-        } else if (mode === MODE_SLIDE && START_SLIDE_LEFT_REGEX.test(line)) {
+        } else if (START_SLIDE_LEFT_REGEX.test(line)) {
           parseParagraph(stack);
           const slideData = line.replace(/\:\<\-{2}:/, "").trim();
           ast.push(new nodes.StartSlide("left", slideData));
           mode = MODE_DEFAULT;
-        } else if (mode === MODE_SLIDE && START_SLIDE_RIGHT_REGEX.test(line)) {
+        } else if (START_SLIDE_RIGHT_REGEX.test(line)) {
           parseParagraph(stack);
           const slideData = line.replace(/\:\-{2}\>:/, "").trim();
           ast.push(new nodes.StartSlide("right", slideData));
           mode = MODE_DEFAULT;
-        } else if (mode === MODE_DEFAULT && END_SLIDE_REGEX.test(line)) {
+        } else if (END_SLIDE_REGEX.test(line)) {
           parseParagraph(stack);
           ast.push(new nodes.EndSlide());
           mode = MODE_SLIDE;
