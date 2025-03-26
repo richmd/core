@@ -2,6 +2,16 @@ import Node from "./Node";
 import inlineParser from "../parser/inline";
 import inline from "./inline";
 
+
+class Mode extends Node {
+  mode: string;
+
+  constructor(mode: string) {
+    super("mode", "block");
+    this.mode = mode;
+  }
+}
+
 class Import extends Node {
   value: string;
 
@@ -207,6 +217,24 @@ class EndTag extends Node {
   }
 }
 
+class StartSlide extends Node {
+  layout: string;
+
+  mode: string;
+
+  constructor(layout: string, mode: string) {
+    super("startSlide", "block");
+    this.layout = layout;
+    this.mode = mode;
+  }
+}
+
+class EndSlide extends Node {
+  constructor() {
+    super("endSlide", "block");
+  }
+}
+
 export default {
   Paragraph,
   Horizontal,
@@ -225,4 +253,7 @@ export default {
   EndDetails,
   StartTag,
   EndTag,
+  StartSlide,
+  EndSlide,
+  Mode,
 };
