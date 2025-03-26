@@ -85,23 +85,20 @@ export const parser = (str: string) => {
           const slideData = line.replace(/\:\-{3}:/, "").trim();
           ast.push(new nodes.StartSlide("center", slideData));
           mode = MODE_DEFAULT;
-          stack = "";
         } else if (START_SLIDE_LEFT_REGEX.test(line)) {
           const slideData = line.replace(/\:\<\-{2}:/, "").trim();
           ast.push(new nodes.StartSlide("left", slideData));
           mode = MODE_DEFAULT;
-          stack = "";
         } else if (START_SLIDE_RIGHT_REGEX.test(line)) {
           const slideData = line.replace(/\:\-{2}\>:/, "").trim();
           ast.push(new nodes.StartSlide("right", slideData));
           mode = MODE_DEFAULT;
-          stack = "";
         } else if (END_SLIDE_REGEX.test(line)) {
           ast.push(new nodes.EndSlide());
-          if (mode === MODE_DEFAULT) {
-            mode = MODE_SLIDE;
-            stack = "";
-          }
+          mode = MODE_SLIDE;
+        }
+        if (mode === MODE_DEFAULT) {
+          stack = "";
         }
       }
       
