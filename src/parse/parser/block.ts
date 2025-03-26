@@ -17,11 +17,18 @@ const START_DETAILS_REGEX = /^\:\>(\b[\w_\.\/]+\b|[\u3040-\u309F\u30A0-\u30FF\u3
 const END_DETAILS_REGEX = /^\:\>$/;
 const START_TAG_REGEX = /^\:\:\b[a-z]+\b|\:\:\b[a-z]+\b\.\b[a-z]+\b|\:\:\.\b[a-z]+\b$/;
 const END_TAG_REGEX = /^\:\:$/;
-
+const SLIDE_MODE_REGEX = /^\:use\sslide\:$/
+const START_SLIDE_CENTER_REGEX = /^\:\-{3}\:(title|content)$/;
+const START_SLIDE_LEFT_REGEX = /^\:\<\-{2}\:(title|content)$/;
+const START_SLIDE_RIGHT_REGEX = /^\:\-{2}\>\:(title|content)$/;
+const END_SLIDE_REGEX = /^\:\-{3}\:$/;
 const MODE_DEFAULT = 0;
 const MODE_CODE = 1;
 const MODE_KATEX = 2;
 const MODE_COLORBLOCK = 3;
+const MODE_SLIDE = 4;
+const PAGE_MODE_DEFAULT = 0;
+const PAGE_MODE_SLIDE = 1;
 
 let tagData: Array<string>;
 
@@ -41,6 +48,7 @@ export const parser = (str: string) => {
   let stack = "";
   let line = "";
   let mode = MODE_DEFAULT;
+  let pageMode = PAGE_MODE_DEFAULT;
   let tables: string[] = [];
   let match: RegExpMatchArray | null;
   let codeLang = "";
@@ -64,6 +72,33 @@ export const parser = (str: string) => {
     }
 
     if (char === "\n") {
+      if (ast.length === 0 && pageMode === PAGE_MODE_DEFAULT && SLIDE_MODE_REGEX.test(line)) {
+        pageMode = PAGE_MODE_SLIDE;
+        mode = MODE_SLIDE;
+      } else if (pageMode === PAGE_MODE_SLIDE) {
+        if (mode === MODE_SLIDE && START_SLIDE_CENTER_REGEX.test(line)) {
+          parseParagraph(stack);
+          const slideData = line.replace(/\:\-{3}:/, "").trim();
+          ast.push(new nodes.StartSlide("center", slideData));
+          mode = MODE_DEFAULT;
+        } else if (mode === MODE_SLIDE && START_SLIDE_LEFT_REGEX.test(line)) {
+          parseParagraph(stack);
+          const slideData = line.replace(/\:\<\-{2}:/, "").trim();
+          ast.push(new nodes.StartSlide("left", slideData));
+          mode = MODE_DEFAULT;
+        } else if (mode === MODE_SLIDE && START_SLIDE_RIGHT_REGEX.test(line)) {
+          parseParagraph(stack);
+          const slideData = line.replace(/\:\-{2}\>:/, "").trim();
+          ast.push(new nodes.StartSlide("right", slideData));
+          mode = MODE_DEFAULT;
+        } else if (mode === MODE_DEFAULT && END_SLIDE_REGEX.test(line)) {
+          parseParagraph(stack);
+          ast.push(new nodes.EndSlide());
+          mode = MODE_SLIDE;
+        }
+        stack = "";
+      } 
+      
       if (mode === MODE_DEFAULT && START_DETAILS_REGEX.test(line)) {
         parseParagraph(stack);
         const summaryData = line.replace(/\:\>/, "").trim();
@@ -247,6 +282,8 @@ export const parser = (str: string) => {
       line += char;
     }
   }
-  parseParagraph(stack.slice(0, -1));
+  if (pageMode === PAGE_MODE_DEFAULT) {
+    parseParagraph(stack.slice(0, -1));
+  }
   return ast;
 };

@@ -207,6 +207,24 @@ class EndTag extends Node {
   }
 }
 
+class StartSlide extends Node {
+  layout: string;
+
+  mode: string;
+
+  constructor(layout: string, mode: string) {
+    super("startSlide", "block");
+    this.layout = layout;
+    this.mode = mode;
+  }
+}
+
+class EndSlide extends Node {
+  constructor() {
+    super("endSlide", "block");
+  }
+}
+
 export default {
   Paragraph,
   Horizontal,
@@ -225,4 +243,6 @@ export default {
   EndDetails,
   StartTag,
   EndTag,
+  StartSlide,
+  EndSlide,
 };

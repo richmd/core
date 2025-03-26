@@ -15,6 +15,8 @@ interface Convert {
   headings: string[];
   rows: Convert[][][];
   summary: string;
+  layout: string;
+  mode: string;
 }
 interface List {
   level: number;
@@ -39,6 +41,7 @@ interface MdTree {
   values: value[] | Convert[];
   checked?: boolean;
   summary: string;
+  layout: string;
 }
 
 interface value {
