@@ -18,9 +18,9 @@ const END_DETAILS_REGEX = /^\:\>$/;
 const START_TAG_REGEX = /^\:\:\b[a-z]+\b|\:\:\b[a-z]+\b\.\b[a-z]+\b|\:\:\.\b[a-z]+\b$/;
 const END_TAG_REGEX = /^\:\:$/;
 const SLIDE_MODE_REGEX = /^\:use\sslide\:$/
-const START_SLIDE_CENTER_REGEX = /^\:\-{3}\:(title|content)$/;
-const START_SLIDE_LEFT_REGEX = /^\:\<\-{2}\:(title|content)$/;
-const START_SLIDE_RIGHT_REGEX = /^\:\-{2}\>\:(title|content)$/;
+const START_SLIDE_CENTER_REGEX = /^\:\-{3}\:(title|content)|\:\-{3}\:(title|content)\.\b[a-z]+\b$/;
+const START_SLIDE_LEFT_REGEX = /^\:\<\-{2}\:(title|content)|\:\<\-{2}\:(title|content)\.\b[a-z]+\b$/;
+const START_SLIDE_RIGHT_REGEX = /^\:\-{2}\>\:(title|content)|\:\-{2}\>\:(title|content)\.\b[a-z]+\b$/;
 const END_SLIDE_REGEX = /^\:\-{3}\:$/;
 const MODE_DEFAULT = 0;
 const MODE_CODE = 1;
@@ -83,18 +83,18 @@ export const parser = (str: string) => {
       } else if (pageMode === PAGE_MODE_SLIDE) {
         if (START_SLIDE_CENTER_REGEX.test(line)) {
           parseParagraph(stack);
-          const slideData = line.replace(/\:\-{3}:/, "").trim();
-          ast.push(new nodes.StartSlide("center", slideData));
+          const slideData = line.replace(/\:\-{3}:/, "").trim().split(".");
+          ast.push(new nodes.StartSlide("center", slideData[0], slideData[1]));
           mode = MODE_DEFAULT;
         } else if (START_SLIDE_LEFT_REGEX.test(line)) {
           parseParagraph(stack);
-          const slideData = line.replace(/\:\<\-{2}:/, "").trim();
-          ast.push(new nodes.StartSlide("left", slideData));
+          const slideData = line.replace(/\:\<\-{2}:/, "").trim().split(".");
+          ast.push(new nodes.StartSlide("left", slideData[0], slideData[1]));
           mode = MODE_DEFAULT;
         } else if (START_SLIDE_RIGHT_REGEX.test(line)) {
           parseParagraph(stack);
-          const slideData = line.replace(/\:\-{2}\>:/, "").trim();
-          ast.push(new nodes.StartSlide("right", slideData));
+          const slideData = line.replace(/\:\-{2}\>:/, "").trim().split(".");
+          ast.push(new nodes.StartSlide("right", slideData[0], slideData[1]));
           mode = MODE_DEFAULT;
         } else if (END_SLIDE_REGEX.test(line)) {
           parseParagraph(stack);

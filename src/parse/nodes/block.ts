@@ -222,10 +222,13 @@ class StartSlide extends Node {
 
   mode: string;
 
-  constructor(layout: string, mode: string) {
+  theme: string;
+
+  constructor(layout: string, mode: string, theme: string) {
     super("startSlide", "block");
     this.layout = layout;
     this.mode = mode;
+    this.theme = theme;
   }
 }
 

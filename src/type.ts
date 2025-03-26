@@ -17,6 +17,7 @@ interface Convert {
   summary: string;
   layout: string;
   mode: string;
+  theme: string;
 }
 interface List {
   level: number;
