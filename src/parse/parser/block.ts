@@ -144,7 +144,7 @@ export const parser = (str: string) => {
           filename = codeData[1];
           mode = MODE_CODE;
           stack = "";
-        } else {
+        } else if (mode !== MODE_SLIDE) {
           stack += line !== "" ? `${line}\n` : "\n";
         }
       } else if (mode === MODE_DEFAULT && INLINE_KATEX_REGEX.test(line)) {
@@ -161,7 +161,7 @@ export const parser = (str: string) => {
           parseParagraph(stack);
           mode = MODE_KATEX;
           stack = "";
-        } else {
+        } else if (mode !== MODE_SLIDE) {
           stack += line !== "" ? `${line}\n` : "\n";
         }
       } else if (COLORBLOCK_REGEX.test(line)) {
@@ -178,7 +178,7 @@ export const parser = (str: string) => {
           }
           mode = MODE_COLORBLOCK;
           stack = "";
-        } else {
+        } else if (mode !== MODE_SLIDE) {
           stack += line !== "" ? `${line}\n` : "\n";
         }
       } else if (mode === MODE_DEFAULT && line.match(BLOCKQUOTE_REGEX) !== null) {
