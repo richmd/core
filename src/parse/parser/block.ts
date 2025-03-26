@@ -101,7 +101,6 @@ export const parser = (str: string) => {
           ast.push(new nodes.EndSlide());
           mode = MODE_SLIDE;
         }
-        stack = "";
       }
       
       if (mode === MODE_DEFAULT && START_DETAILS_REGEX.test(line)) {
