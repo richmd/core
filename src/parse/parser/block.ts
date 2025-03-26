@@ -82,24 +82,26 @@ export const parser = (str: string) => {
         }
       } else if (pageMode === PAGE_MODE_SLIDE) {
         if (START_SLIDE_CENTER_REGEX.test(line)) {
-          parseParagraph(stack);
           const slideData = line.replace(/\:\-{3}:/, "").trim();
           ast.push(new nodes.StartSlide("center", slideData));
           mode = MODE_DEFAULT;
+          stack = "";
         } else if (START_SLIDE_LEFT_REGEX.test(line)) {
-          parseParagraph(stack);
           const slideData = line.replace(/\:\<\-{2}:/, "").trim();
           ast.push(new nodes.StartSlide("left", slideData));
           mode = MODE_DEFAULT;
+          stack = "";
         } else if (START_SLIDE_RIGHT_REGEX.test(line)) {
-          parseParagraph(stack);
           const slideData = line.replace(/\:\-{2}\>:/, "").trim();
           ast.push(new nodes.StartSlide("right", slideData));
           mode = MODE_DEFAULT;
+          stack = "";
         } else if (END_SLIDE_REGEX.test(line)) {
-          parseParagraph(stack);
           ast.push(new nodes.EndSlide());
-          mode = MODE_SLIDE;
+          if (mode === MODE_DEFAULT) {
+            mode = MODE_SLIDE;
+            stack = "";
+          }
         }
       }
       
@@ -143,7 +145,7 @@ export const parser = (str: string) => {
           filename = codeData[1];
           mode = MODE_CODE;
           stack = "";
-        } else if (mode !== MODE_SLIDE) {
+        } else {
           stack += line !== "" ? `${line}\n` : "\n";
         }
       } else if (mode === MODE_DEFAULT && INLINE_KATEX_REGEX.test(line)) {
@@ -160,7 +162,7 @@ export const parser = (str: string) => {
           parseParagraph(stack);
           mode = MODE_KATEX;
           stack = "";
-        } else if (mode !== MODE_SLIDE) {
+        } else {
           stack += line !== "" ? `${line}\n` : "\n";
         }
       } else if (COLORBLOCK_REGEX.test(line)) {
@@ -177,7 +179,7 @@ export const parser = (str: string) => {
           }
           mode = MODE_COLORBLOCK;
           stack = "";
-        } else if (mode !== MODE_SLIDE) {
+        } else {
           stack += line !== "" ? `${line}\n` : "\n";
         }
       } else if (mode === MODE_DEFAULT && line.match(BLOCKQUOTE_REGEX) !== null) {
@@ -286,7 +288,7 @@ export const parser = (str: string) => {
       line += char;
     }
   }
-  if (mode !== MODE_SLIDE) {
+  if (pageMode === PAGE_MODE_DEFAULT) {
     parseParagraph(stack.slice(0, -1));
   }
   return ast;
