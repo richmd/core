@@ -82,22 +82,26 @@ export const parser = (str: string) => {
         }
       } else if (pageMode === PAGE_MODE_SLIDE) {
         if (START_SLIDE_CENTER_REGEX.test(line)) {
+          parseParagraph(stack);
           const slideData = line.replace(/\:\-{3}:/, "").trim();
           ast.push(new nodes.StartSlide("center", slideData));
           mode = MODE_DEFAULT;
         } else if (START_SLIDE_LEFT_REGEX.test(line)) {
+          parseParagraph(stack);
           const slideData = line.replace(/\:\<\-{2}:/, "").trim();
           ast.push(new nodes.StartSlide("left", slideData));
           mode = MODE_DEFAULT;
         } else if (START_SLIDE_RIGHT_REGEX.test(line)) {
+          parseParagraph(stack);
           const slideData = line.replace(/\:\-{2}\>:/, "").trim();
           ast.push(new nodes.StartSlide("right", slideData));
           mode = MODE_DEFAULT;
         } else if (END_SLIDE_REGEX.test(line)) {
+          parseParagraph(stack);
           ast.push(new nodes.EndSlide());
           mode = MODE_SLIDE;
         }
-        if (mode === MODE_DEFAULT) {
+        if (mode === MODE_SLIDE || mode === MODE_DEFAULT) {
           stack = "";
         }
       }

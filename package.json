@@ -1,6 +1,6 @@
 {
   "name": "@richmd/core",
-  "version": "3.2.0-alpha.7",
+  "version": "3.2.0-alpha.8",
   "description": "It is a core package of Richmd.",
   "exports": {
     ".": {
