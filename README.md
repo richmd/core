@@ -59,13 +59,6 @@ const text = `# aaaa
 const ast = parseTree(text);
 ```
 
-### [Deprecated] `richmd()`
-Using `richmd()` allows you to convert Markdown to HTML, but it is no longer recommended to import it directly from `@richmd/core`.
-While there are currently no restrictions in place to support migration from v2, this method is expected to be removed in a future update.
-
-If you need HTML conversion, please use an extension package such as `@richmd/js`.
-
-
 ## Markdown Syntax
 Please read [Richmd Markdown Syntax Documentation](./docs/md-syntax.md).
 
@@ -88,6 +81,7 @@ Please read [Richmd Markdown Syntax Documentation](./docs/md-syntax.md).
 - Dropdown details
 - Video(HTML5 Video Tag)
 - Custom HTML Tag
+- [Slide Mode (v4 ~)](./docs/slide-mode.md)
 
 ## License
 MIT

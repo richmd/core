@@ -223,3 +223,6 @@ only Class
 <span class="span">div</span>
 </div>
 ```
+
+## Richmd Slide Mode (v4)
+Please see [this document](slide-mode.md).
