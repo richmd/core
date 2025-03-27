@@ -29,6 +29,7 @@ const MODE_COLORBLOCK = 3;
 const MODE_SLIDE = 4;
 const PAGE_MODE_DEFAULT = 0;
 const PAGE_MODE_SLIDE = 1;
+const PAGE_MODE_SLIDE_CONTENT = 2;
 
 let tagData: Array<string>;
 
@@ -80,33 +81,31 @@ export const parser = (str: string) => {
         } else {
           ast.push(new nodes.Mode("default"));
         }
-      } else if (pageMode === PAGE_MODE_SLIDE) {
-        if (START_SLIDE_CENTER_REGEX.test(line)) {
-          parseParagraph(stack);
-          const slideData = line.replace(/\:\-{3}:/, "").trim().split(".");
-          ast.push(new nodes.StartSlide("center", slideData[0], slideData[1] ?? "default"));
-          mode = MODE_DEFAULT;
-        } else if (START_SLIDE_LEFT_REGEX.test(line)) {
-          parseParagraph(stack);
-          const slideData = line.replace(/\:\<\-{2}:/, "").trim().split(".");
-          ast.push(new nodes.StartSlide("left", slideData[0], slideData[1] ?? "default"));
-          mode = MODE_DEFAULT;
-        } else if (START_SLIDE_RIGHT_REGEX.test(line)) {
-          parseParagraph(stack);
-          const slideData = line.replace(/\:\-{2}\>:/, "").trim().split(".");
-          ast.push(new nodes.StartSlide("right", slideData[0], slideData[1] ?? "default"));
-          mode = MODE_DEFAULT;
-        } else if (END_SLIDE_REGEX.test(line)) {
-          parseParagraph(stack);
-          ast.push(new nodes.EndSlide());
-          mode = MODE_SLIDE;
-        }
-        if (mode === MODE_SLIDE || mode === MODE_DEFAULT) {
-          stack = "";
-        }
-      }
-      
-      if (mode === MODE_DEFAULT && START_DETAILS_REGEX.test(line)) {
+      } else if (mode === MODE_SLIDE && START_SLIDE_CENTER_REGEX.test(line)) {
+        parseParagraph(stack);
+        const slideData = line.replace(/\:\-{3}:/, "").trim().split(".");
+        ast.push(new nodes.StartSlide("center", slideData[0], slideData[1] ?? "default"));
+        mode = MODE_DEFAULT;
+        stack = "";
+      } else if (mode === MODE_SLIDE && START_SLIDE_LEFT_REGEX.test(line)) {
+        parseParagraph(stack);
+        const slideData = line.replace(/\:\<\-{2}:/, "").trim().split(".");
+        ast.push(new nodes.StartSlide("left", slideData[0], slideData[1] ?? "default"));
+        mode = MODE_DEFAULT;
+        stack = "";
+      } else if (mode === MODE_SLIDE && START_SLIDE_RIGHT_REGEX.test(line)) {
+        parseParagraph(stack);
+        const slideData = line.replace(/\:\-{2}\>:/, "").trim().split(".");
+        ast.push(new nodes.StartSlide("right", slideData[0], slideData[1] ?? "default"));
+        mode = MODE_DEFAULT;
+        stack = "";
+      } else if (mode === MODE_DEFAULT && END_SLIDE_REGEX.test(line)) {
+        parseParagraph(stack);
+        ast.push(new nodes.EndSlide());
+        mode = MODE_SLIDE;
+        pageMode = PAGE_MODE_SLIDE;
+        stack = "";
+      } else if (mode === MODE_DEFAULT && START_DETAILS_REGEX.test(line)) {
         parseParagraph(stack);
         const summaryData = line.replace(/\:\>/, "").trim();
         ast.push(new nodes.StartDetails(summaryData));
@@ -281,7 +280,9 @@ export const parser = (str: string) => {
           ast[ast.length - 1].values[values.length - 1].value += `\n${line}`;
           stack = "";
         } else {
-          stack += line !== "" ? `${line}\n` : "";
+          if (mode === MODE_DEFAULT) {
+            stack += line !== "" ? `${line}\n` : "\n";
+          }
         }
       }
       line = "";
