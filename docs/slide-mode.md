@@ -5,14 +5,13 @@ This allows you to create presentation slides using markdown-like syntax.
 ## How to Use
 The usage is the same as normal, just use `richmd()`. However, there are rules for the format of the target markdown text, so caution is needed.
 
-Also, when using this mode, it is strongly recommended to use `@richmd/react`.
-
-*Support for Vue.js is planned for a future update.*
+Also, when using this mode, it is strongly recommended to use `@richmd/react` or `@richmd/vue`.
 
 ###
 
 ```sh
 pnpm add @richmd/react # Use React
+pnpm add @richmd/vue # Use Vue
 ```
 
 ## How to Write Markdown Text
