@@ -125,9 +125,7 @@ export default (text: string[] | string) => {
           ast.push(new nodes.InlineCode(stack));
           mode = MODE_DEFAULT;
         } else {
-          if (!helper.isEmpty(stack)) {
-            ast.push(new nodes.Text(stack));
-          }
+          ast.push(new nodes.Text(stack));
           mode = MODE_INLINE_CODE;
         }
         stack = "";
@@ -137,9 +135,7 @@ export default (text: string[] | string) => {
           ast.push(new nodes.InlineKatex(stack));
           mode = MODE_DEFAULT;
         } else {
-          if (!helper.isEmpty(stack)) {
-            ast.push(new nodes.Text(stack));
-          }
+          ast.push(new nodes.Text(stack));
           mode = MODE_INLINE_KATEX;
         }
         stack = "";
