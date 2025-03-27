@@ -280,7 +280,7 @@ export const parser = (str: string) => {
           ast[ast.length - 1].values[values.length - 1].value += `\n${line}`;
           stack = "";
         } else {
-          if (mode === MODE_DEFAULT) {
+          if (mode !== MODE_SLIDE) {
             stack += line !== "" ? `${line}\n` : "\n";
           }
         }
