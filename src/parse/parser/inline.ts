@@ -173,69 +173,52 @@ export default (text: string[] | string) => {
         continue;
       }
       case "!":
-        if (mode === MODE_DEFAULT && stack !== "") {
-          ast.push(new nodes.Text(stack));
-          stack += char;
-          continue;
-        }
-
         if (!helper.isEmpty(stack)) {
           ast.push(new nodes.Text(stack));
         }
-        stack = "";
-        mode = MODE_IMAGE;
-        stack = char;
-        continue;
+
+        if (text[i + 1] === "[") {
+          stack = "";
+          mode = MODE_IMAGE;
+          stack = char;
+          continue;
+        }
       case "@":
-        if (mode === MODE_DEFAULT && stack !== "") {
-          ast.push(new nodes.Text(stack));
-          stack += char;
-          continue;
-        }
-
         if (!helper.isEmpty(stack)) {
           ast.push(new nodes.Text(stack));
         }
-        stack = "";
-        mode = MODE_VIDEO;
-        stack = char;
-        continue;
-      case "[":
-        if (mode === MODE_DEFAULT && stack !== "") {
-          ast.push(new nodes.Text(stack));
-          stack += char;
+
+        if (text[i + 1] === "[") {
+          stack = "";
+          mode = MODE_VIDEO;
+          stack = char;
           continue;
         }
-        
+      case "[":
         if (mode !== MODE_IMAGE && mode !== MODE_VIDEO) {
           ast.push(new nodes.Text(stack));
           mode = MODE_LINK;
           stack = char;
           continue;
         }
-        stack += char;
-        continue;
       case ")":
-        if (mode === MODE_DEFAULT && stack !== "") {
-          ast.push(new nodes.Text(stack));
-          stack += char;
-          continue;
-        }
         stack += char;
         if (mode === MODE_IMAGE) {
           ast.push(new nodes.Image(stack));
           mode = MODE_DEFAULT;
           stack = "";
+          continue;
         } else if (mode === MODE_VIDEO) {
           ast.push(new nodes.Video(stack));
           mode = MODE_DEFAULT;
           stack = "";
+          continue;
         } else if (mode === MODE_LINK) {
           ast.push(new nodes.Link(stack));
           mode = MODE_DEFAULT;
           stack = "";
+          continue;
         }
-        continue;
       case "\\":
         if (mode !== MODE_INLINE_CODE && mode !== MODE_INLINE_KATEX) {
           escapeSequence = true;
