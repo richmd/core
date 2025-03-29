@@ -114,7 +114,7 @@ export const parser = (str: string) => {
       stack = "";
     } else if (mode === MODE_DEFAULT && END_TAG_REGEX.test(line)) {
       parseStack(stack);
-      ast.push(new nodes.EndTag(tagData ? tagData[0] : "div"));
+      ast.push(new nodes.EndTag(tagData ? tagData[0] : "span"));
       stack = "";
     } else if (CODE_REGEX.test(line)) {
       if (mode === MODE_CODE) {

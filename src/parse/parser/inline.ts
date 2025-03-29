@@ -173,6 +173,12 @@ export default (text: string[] | string) => {
         continue;
       }
       case "!":
+        if (mode === MODE_DEFAULT && stack !== "") {
+          ast.push(new nodes.Text(stack));
+          stack += char;
+          continue;
+        }
+
         if (!helper.isEmpty(stack)) {
           ast.push(new nodes.Text(stack));
         }
@@ -181,6 +187,12 @@ export default (text: string[] | string) => {
         stack = char;
         continue;
       case "@":
+        if (mode === MODE_DEFAULT && stack !== "") {
+          ast.push(new nodes.Text(stack));
+          stack += char;
+          continue;
+        }
+
         if (!helper.isEmpty(stack)) {
           ast.push(new nodes.Text(stack));
         }
@@ -189,6 +201,12 @@ export default (text: string[] | string) => {
         stack = char;
         continue;
       case "[":
+        if (mode === MODE_DEFAULT && stack !== "") {
+          ast.push(new nodes.Text(stack));
+          stack += char;
+          continue;
+        }
+        
         if (mode !== MODE_IMAGE && mode !== MODE_VIDEO) {
           ast.push(new nodes.Text(stack));
           mode = MODE_LINK;
@@ -198,6 +216,11 @@ export default (text: string[] | string) => {
         stack += char;
         continue;
       case ")":
+        if (mode === MODE_DEFAULT && stack !== "") {
+          ast.push(new nodes.Text(stack));
+          stack += char;
+          continue;
+        }
         stack += char;
         if (mode === MODE_IMAGE) {
           ast.push(new nodes.Image(stack));
