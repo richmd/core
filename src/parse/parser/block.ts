@@ -48,12 +48,14 @@ export const parser = (str: string) => {
   let codeLang = "";
   let filename = "";
   let messageType = "default";
+  let prevListValue = "";
 
   const parseStack = (stack: string) => {
     if (tables.length > 0) {
       ast.push(new nodes.Table(tables));
       tables = [];
     }
+
     if (!helper.isEmpty(stack)) {
       ast.push(new nodes.Paragraph(stack));
     }
@@ -208,6 +210,7 @@ export const parser = (str: string) => {
           continue;
         }
       }
+      prevListValue = match[2].trim();
       const list = check
         ? new nodes.CheckList(check[2].trim(), check[1] === "x", level)
         : new nodes.List(match[2].trim(), level);
@@ -236,6 +239,7 @@ export const parser = (str: string) => {
           continue;
         }
       }
+      prevListValue = match[3].trim();
       const list = new nodes.OrderedList(match[3].trim(), order || 0, level);
       ast.push(list);
       stack = "";
@@ -259,8 +263,27 @@ export const parser = (str: string) => {
         prev &&
         (prev.name === "list" || prev.name === "checklist" || prev.name === "orderedlist")
       ) {
-        const { values } = ast[ast.length - 1];
-        ast[ast.length - 1].values[values.length - 1].value += `\n${line}`;
+        const latestAst = ast[ast.length - 1];
+        const { values } = latestAst;
+        ast.pop();
+        if (prev.name === "checklist") {
+          ast.push(new nodes.CheckList(
+            `${prevListValue}\n${line}`,
+            latestAst.values[values.length - 1].checked,
+            latestAst.level,
+          ));
+        } else if (prev.name === "orderedlist") {
+          ast.push(new nodes.OrderedList(
+            `${prevListValue}\n${line}`,
+            latestAst.values[values.length - 1].order,
+            latestAst.level,
+          ));
+        } else {
+          ast.push(new nodes.List(
+            `${prevListValue}\n${line}`,
+            latestAst.level,
+          ));
+        }
         stack = "";
       } else {
         if (mode !== MODE_SLIDE) {

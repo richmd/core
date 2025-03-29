@@ -61,15 +61,24 @@ export default (text: string[] | string) => {
             stack = "";
           }
           continue;
+        } else {
+          if (mode === MODE_ASTERISK_TRIPLE) {
+            ast.push(new nodes.EmItalic(stack));
+            mode = MODE_ASTERISK_DOUBLE;
+            stack = "";
+            continue;
+          }
         }
+
         if (mode === MODE_ASTERISK) {
           ast.push(new nodes.Italic(stack));
           mode = MODE_DEFAULT;
+          stack = "";
         } else {
           ast.push(new nodes.Text(stack));
           mode = MODE_ASTERISK;
+          stack = "";
         }
-        stack = "";
         continue;
       case "_":
         if (mode === MODE_VIDEO || mode === MODE_IMAGE || mode === MODE_LINK) {
