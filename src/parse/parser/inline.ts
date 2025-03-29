@@ -72,6 +72,10 @@ export default (text: string[] | string) => {
         stack = "";
         continue;
       case "_":
+        if (mode === MODE_VIDEO || mode === MODE_IMAGE || mode === MODE_LINK) {
+          stack += char;
+          continue;
+        }
         if (text[i + 1] === "_") {
           i += 1;
           if (text[i + 1] === "_") {
@@ -106,6 +110,10 @@ export default (text: string[] | string) => {
         stack = "";
         continue;
       case "~":
+        if (mode === MODE_VIDEO || mode === MODE_IMAGE || mode === MODE_LINK) {
+          stack += char;
+          continue;
+        }
         if (text[i + 1] === "~") {
           i += 1;
           if (mode === MODE_STRIKETHROUGH) {
@@ -175,7 +183,7 @@ export default (text: string[] | string) => {
       case "!":
         if (!helper.isEmpty(stack)) {
           stack += char;
-          break;
+          continue;
         }
 
         if (text[i + 1] === "[") {
@@ -195,9 +203,6 @@ export default (text: string[] | string) => {
           mode = MODE_VIDEO;
           stack = char;
           continue;
-        } else {
-          stack += char;
-          break;
         }
       case "[":
         if (mode !== MODE_IMAGE && mode !== MODE_VIDEO) {
@@ -207,7 +212,7 @@ export default (text: string[] | string) => {
           continue;
         } else {
           stack += char;
-          break;
+          continue;
         }
       case ")":
         stack += char;
@@ -227,7 +232,7 @@ export default (text: string[] | string) => {
           stack = "";
           continue;
         } else {
-          break;
+          continue;
         }
       case "\\":
         if (mode !== MODE_INLINE_CODE && mode !== MODE_INLINE_KATEX) {
