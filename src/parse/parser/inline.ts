@@ -190,6 +190,10 @@ export default (text: string[] | string) => {
         continue;
       }
       case "!":
+        if (mode === MODE_INLINE_CODE || mode === MODE_INLINE_KATEX) {
+          stack += char;
+          continue;
+        }
         if (!helper.isEmpty(stack)) {
           stack += char;
           continue;
@@ -202,6 +206,10 @@ export default (text: string[] | string) => {
           continue;
         }
       case "@":
+        if (mode === MODE_INLINE_CODE || mode === MODE_INLINE_KATEX) {
+          stack += char;
+          continue;
+        }
         if (!helper.isEmpty(stack)) {
           stack += char;
           break;
