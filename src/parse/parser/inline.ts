@@ -174,7 +174,8 @@ export default (text: string[] | string) => {
       }
       case "!":
         if (!helper.isEmpty(stack)) {
-          ast.push(new nodes.Text(stack));
+          stack += char;
+          break;
         }
 
         if (text[i + 1] === "[") {
@@ -185,7 +186,8 @@ export default (text: string[] | string) => {
         }
       case "@":
         if (!helper.isEmpty(stack)) {
-          ast.push(new nodes.Text(stack));
+          stack += char;
+          break;
         }
 
         if (text[i + 1] === "[") {
@@ -193,6 +195,9 @@ export default (text: string[] | string) => {
           mode = MODE_VIDEO;
           stack = char;
           continue;
+        } else {
+          stack += char;
+          break;
         }
       case "[":
         if (mode !== MODE_IMAGE && mode !== MODE_VIDEO) {
@@ -200,6 +205,9 @@ export default (text: string[] | string) => {
           mode = MODE_LINK;
           stack = char;
           continue;
+        } else {
+          stack += char;
+          break;
         }
       case ")":
         stack += char;
@@ -218,6 +226,8 @@ export default (text: string[] | string) => {
           mode = MODE_DEFAULT;
           stack = "";
           continue;
+        } else {
+          break;
         }
       case "\\":
         if (mode !== MODE_INLINE_CODE && mode !== MODE_INLINE_KATEX) {
