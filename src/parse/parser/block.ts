@@ -21,6 +21,7 @@ const START_SLIDE_CENTER_REGEX = /^\:\-{3}\:(title|content)|\:\-{3}\:(title|cont
 const START_SLIDE_LEFT_REGEX = /^\:\<\-{2}\:(title|content)|\:\<\-{2}\:(title|content)\.\b[a-z]+\b$/;
 const START_SLIDE_RIGHT_REGEX = /^\:\-{2}\>\:(title|content)|\:\-{2}\>\:(title|content)\.\b[a-z]+\b$/;
 const END_SLIDE_REGEX = /^\:\-{3}\:$/;
+const URL_REGEX = /^\bhttps?:\/\/(?:www\.)?[a-zA-Z0-9\-._~:/?#[@\]!$&'()*+,;=%]+\b$/;
 const MODE_DEFAULT = 0;
 const MODE_CODE = 1;
 const MODE_KATEX = 2;
@@ -64,7 +65,7 @@ export const parser = (str: string) => {
   // \r を削除 & \n で分割し、配列化
   const lines = str.replace(/\r/g, "").split("\n");
 
-  for (const line of lines) {
+  for (let line of lines) {
     if (ast.length === 0 && pageMode === PAGE_MODE_DEFAULT) {
       if (SLIDE_MODE_REGEX.test(line)) {
         ast.push(new nodes.Mode("slide"));
@@ -210,10 +211,19 @@ export const parser = (str: string) => {
           continue;
         }
       }
-      prevListValue = match[2].trim();
+      let value = match[2].trim();
+      if (URL_REGEX.test(value)) {
+        value = `[${value}](${value})`;
+      }
+
+      let checkValue = "";
+      if (check && URL_REGEX.test(check[2].trim())) {
+        checkValue = `[${check[2].trim()}](${check[2].trim()})`;
+      }
+      prevListValue = value;
       const list = check
-        ? new nodes.CheckList(check[2].trim(), check[1] === "x", level)
-        : new nodes.List(match[2].trim(), level);
+        ? new nodes.CheckList(checkValue, check[1] === "x", level)
+        : new nodes.List(value, level);
       ast.push(list);
       stack = "";
     } else if (mode === MODE_DEFAULT && line.match(OLIST_REGEX) !== null) {
@@ -239,8 +249,13 @@ export const parser = (str: string) => {
           continue;
         }
       }
-      prevListValue = match[3].trim();
-      const list = new nodes.OrderedList(match[3].trim(), order || 0, level);
+
+      let value = match[3].trim();
+      if (URL_REGEX.test(value)) {
+        value = `[${value}](${value})`;
+      }
+      prevListValue = value;
+      const list = new nodes.OrderedList(value, order || 0, level);
       ast.push(list);
       stack = "";
     } else if (mode === MODE_DEFAULT && line.match(TABLE_REGEX) !== null) {
@@ -287,6 +302,9 @@ export const parser = (str: string) => {
         stack = "";
       } else {
         if (mode !== MODE_SLIDE) {
+          if (URL_REGEX.test(line)) {
+            line = `[${line}](${line})`;
+          }
           stack += line !== "" ? `${line}\n` : "\n";
         }
       }
