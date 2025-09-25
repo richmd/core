@@ -65,7 +65,8 @@ export const parser = (str: string) => {
   // \r を削除 & \n で分割し、配列化
   const lines = str.replace(/\r/g, "").split("\n");
 
-  for (let line of lines) {
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i];
     if (ast.length === 0 && pageMode === PAGE_MODE_DEFAULT) {
       if (SLIDE_MODE_REGEX.test(line)) {
         ast.push(new nodes.Mode("slide"));
@@ -306,6 +307,9 @@ export const parser = (str: string) => {
             line = `[${line}](${line})`;
           }
           stack += line !== "" ? `${line}\n` : "\n";
+          if (i === lines.length - 1) {
+            parseStack(stack);
+          }
         }
       }
     }
