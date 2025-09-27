@@ -307,10 +307,10 @@ export const parser = (str: string) => {
             line = `[${line}](${line})`;
           }
           stack += line !== "" ? `${line}\n` : "\n";
-          // if (i === lines.length - 1) {
-          //   parseStack(stack);
-          //   stack = "";
-          // }
+          if (i === lines.length - 1) {
+            parseStack(stack);
+            stack = "";
+          }
         }
       }
     }
