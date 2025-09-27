@@ -294,7 +294,7 @@ export const parser = (str: string) => {
             latestAst.values[values.length - 1].order,
             latestAst.level,
           ));
-        } else {
+        } else if (prev.name === "list") {
           ast.push(new nodes.List(
             `${prevListValue}\n${line}`,
             latestAst.level,
@@ -309,6 +309,7 @@ export const parser = (str: string) => {
           stack += line !== "" ? `${line}\n` : "\n";
           if (i === lines.length - 1) {
             parseStack(stack);
+            stack = "";
           }
         }
       }
