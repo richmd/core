@@ -108,7 +108,7 @@ export const parser = (str: string, useSlide: boolean = true) => {
       stack = "";
     } else if (mode === MODE_DEFAULT && START_TAG_REGEX.test(line)) {
       parseStack(stack);
-      const lineData = line.replace(/\:\:/, "").trim();
+      const lineData = line.replace(/\<\>/, "").trim();
       if (lineData) {
         tagData = lineData.split(".");
       } else {
