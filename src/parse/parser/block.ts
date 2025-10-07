@@ -12,8 +12,8 @@ const BLOCKQUOTE_REGEX = /^(>{1,})\s?(.+)$/;
 const TABLE_REGEX = /(?:\s*)?\|(.+)\|(?:\s*)$/;
 const KATEX_REGEX = /^[\$]{2}(.*)$/;
 const COLORBLOCK_REGEX = /^[\=]{3}(.*)|[\=]{3}(.*)\b[\l]+\b$/;
-const START_DETAILS_REGEX = /^\>\>(\b[\w_\.\/]+\b|[\u3040-\u309F\u30A0-\u30FF\u3400-\u9FFF])+$/;
-const END_DETAILS_REGEX = /^\>\>$/;
+const START_DETAILS_REGEX = /^\=\>(\b[\w_\.\/]+\b|[\u3040-\u309F\u30A0-\u30FF\u3400-\u9FFF])+$/;
+const END_DETAILS_REGEX = /^\=\>$/;
 const SLIDE_MODE_REGEX = /^\|use\sslide\|$/
 const START_SLIDE_CENTER_REGEX = /^\|{2}\-{3}\|{2}(title|content)|\|{2}\-{3}\|{2}(title|content)\.\b[a-z]+\b$/;
 const START_SLIDE_LEFT_REGEX = /^\|{2}\<\-{2}\|{2}(title|content)|\|{2}\<\-{2}\|{2}(title|content)\.\b[a-z]+\b$/;
