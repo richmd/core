@@ -12,6 +12,8 @@ const BLOCKQUOTE_REGEX = /^(>{1,})\s?(.+)$/;
 const TABLE_REGEX = /(?:\s*)?\|(.+)\|(?:\s*)$/;
 const KATEX_REGEX = /^[\$]{2}(.*)$/;
 const COLORBLOCK_REGEX = /^[\=]{3}(.*)|[\=]{3}(.*)\b[\l]+\b$/;
+const START_TAG_REGEX = /^\<\>\b[a-z]+\b|\:\:\b[a-z]+\b\.\b[a-z]+\b|\<\>\.\b[a-z]+\b$/;
+const END_TAG_REGEX = /^\<\>$/;
 const START_DETAILS_REGEX = /^\=\>(\b[\w_\.\/]+\b|[\u3040-\u309F\u30A0-\u30FF\u3400-\u9FFF])+$/;
 const END_DETAILS_REGEX = /^\=\>$/;
 const SLIDE_MODE_REGEX = /^\|use\sslide\|$/
@@ -106,6 +108,20 @@ export const parser = (str: string, useSlide: boolean = true) => {
     } else if (mode === MODE_DEFAULT && END_DETAILS_REGEX.test(line)) {
       parseStack(stack);
       ast.push(new nodes.EndDetails());
+      stack = "";
+    } else if (mode === MODE_DEFAULT && START_TAG_REGEX.test(line)) {
+      parseStack(stack);
+      const lineData = line.replace(/\:\:/, "").trim();
+      if (lineData) {
+        tagData = lineData.split(".");
+      } else {
+        tagData = ["span", ""];
+      }
+      ast.push(new nodes.StartTag(tagData[0] ?? "span", tagData[1]));
+      stack = "";
+    } else if (mode === MODE_DEFAULT && END_TAG_REGEX.test(line)) {
+      parseStack(stack);
+      ast.push(new nodes.EndTag(tagData ? tagData[0] : "span"));
       stack = "";
     } else if (CODE_REGEX.test(line)) {
       if (mode === MODE_CODE) {
