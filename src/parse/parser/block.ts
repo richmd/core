@@ -76,17 +76,17 @@ export const parser = (str: string, useSlide: boolean = true) => {
     }
     
     if (pageMode === PAGE_MODE_SLIDE && mode === MODE_SLIDE && START_SLIDE_CENTER_REGEX.test(line)) {
-      const slideData = line.replace(/\:\-{3}:/, "").trim().split(".");
+      const slideData = line.replace(/\|\-{3}|/, "").trim().split(".");
       ast.push(new nodes.StartSlide("center", slideData[0], slideData[1] ?? "default"));
       mode = MODE_DEFAULT;
       stack = "";
     } else if (pageMode === PAGE_MODE_SLIDE && mode === MODE_SLIDE && START_SLIDE_LEFT_REGEX.test(line)) {
-      const slideData = line.replace(/\:\<\-{2}:/, "").trim().split(".");
+      const slideData = line.replace(/\|\<\-{2}|/, "").trim().split(".");
       ast.push(new nodes.StartSlide("left", slideData[0], slideData[1] ?? "default"));
       mode = MODE_DEFAULT;
       stack = "";
     } else if (pageMode === PAGE_MODE_SLIDE && mode === MODE_SLIDE && START_SLIDE_RIGHT_REGEX.test(line)) {
-      const slideData = line.replace(/\:\-{2}\>:/, "").trim().split(".");
+      const slideData = line.replace(/\|\-{2}\>|/, "").trim().split(".");
       ast.push(new nodes.StartSlide("right", slideData[0], slideData[1] ?? "default"));
       mode = MODE_DEFAULT;
       stack = "";
@@ -97,7 +97,7 @@ export const parser = (str: string, useSlide: boolean = true) => {
       stack = "";
     } else if (mode === MODE_DEFAULT && START_DETAILS_REGEX.test(line)) {
       parseStack(stack);
-      const summaryData = line.replace(/\:\>/, "").trim();
+      const summaryData = line.replace(/\=\>/, "").trim();
       ast.push(new nodes.StartDetails(summaryData));
       stack = "";
     } else if (mode === MODE_DEFAULT && END_DETAILS_REGEX.test(line)) {
