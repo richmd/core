@@ -76,9 +76,6 @@ export const parser = (str: string, useSlide: boolean = true) => {
         ast.push(new nodes.Mode("default"));
       }
     }
-
-    console.log(line);
-    console.log(START_SLIDE_CENTER_REGEX.test(line));
     
     if (pageMode === PAGE_MODE_SLIDE && mode === MODE_SLIDE && START_SLIDE_CENTER_REGEX.test(line)) {
       const slideData = line.replace(/\|{2}\-{3}\|{2}/, "").trim().split(".");
