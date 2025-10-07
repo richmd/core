@@ -15,9 +15,9 @@ const COLORBLOCK_REGEX = /^[\=]{3}(.*)|[\=]{3}(.*)\b[\l]+\b$/;
 const START_DETAILS_REGEX = /^\=\>(\b[\w_\.\/]+\b|[\u3040-\u309F\u30A0-\u30FF\u3400-\u9FFF])+$/;
 const END_DETAILS_REGEX = /^\=\>$/;
 const SLIDE_MODE_REGEX = /^\|use\sslide\|$/
-const START_SLIDE_CENTER_REGEX = /^\|{2}\-{3}\|{2}(title|content)|\|{2}\-{3}\|{2}(title|content)\.\b[a-z]+\b$/;
-const START_SLIDE_LEFT_REGEX = /^\|{2}\<\-{2}\|{2}(title|content)|\|{2}\<\-{2}\|{2}(title|content)\.\b[a-z]+\b$/;
-const START_SLIDE_RIGHT_REGEX = /^\|{2}\-{2}\>\|{2}(title|content)|\|{2}\-{2}\>\|{2}(title|content)\.\b[a-z]+\b$/;
+const START_SLIDE_CENTER_REGEX = /^\|\|---\|\|(title|content)(?:\.[A-Za-z]+)?$/;
+const START_SLIDE_LEFT_REGEX = /^\|\|<--\|\|(title|content)(?:\.[A-Za-z]+)?$/;
+const START_SLIDE_RIGHT_REGEX = /^\|\|-->\|\|(title|content)(?:\.[A-Za-z]+)?$/;
 const END_SLIDE_REGEX = /^\|{2}\-{3}\|{2}$/;
 const URL_REGEX = /^\bhttps?:\/\/(?:www\.)?[a-zA-Z0-9\-._~:/?#[@\]!$&'()*+,;=%]+\b$/;
 const MODE_DEFAULT = 0;
@@ -74,19 +74,22 @@ export const parser = (str: string, useSlide: boolean = true) => {
         ast.push(new nodes.Mode("default"));
       }
     }
+
+    console.log(line);
+    console.log(START_SLIDE_CENTER_REGEX.test(line));
     
     if (pageMode === PAGE_MODE_SLIDE && mode === MODE_SLIDE && START_SLIDE_CENTER_REGEX.test(line)) {
-      const slideData = line.replace(/\|\-{3}|/, "").trim().split(".");
+      const slideData = line.replace(/\|{2}\-{3}\|{2}/, "").trim().split(".");
       ast.push(new nodes.StartSlide("center", slideData[0], slideData[1] ?? "default"));
       mode = MODE_DEFAULT;
       stack = "";
     } else if (pageMode === PAGE_MODE_SLIDE && mode === MODE_SLIDE && START_SLIDE_LEFT_REGEX.test(line)) {
-      const slideData = line.replace(/\|\<\-{2}|/, "").trim().split(".");
+      const slideData = line.replace(/\|{2}\<\-{2}\|{2}/, "").trim().split(".");
       ast.push(new nodes.StartSlide("left", slideData[0], slideData[1] ?? "default"));
       mode = MODE_DEFAULT;
       stack = "";
     } else if (pageMode === PAGE_MODE_SLIDE && mode === MODE_SLIDE && START_SLIDE_RIGHT_REGEX.test(line)) {
-      const slideData = line.replace(/\|\-{2}\>|/, "").trim().split(".");
+      const slideData = line.replace(/\|{2}\-{2}\>\|{2}/, "").trim().split(".");
       ast.push(new nodes.StartSlide("right", slideData[0], slideData[1] ?? "default"));
       mode = MODE_DEFAULT;
       stack = "";
