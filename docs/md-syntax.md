@@ -166,9 +166,9 @@ This is danger color block.
 ### Dropdown Details
 #### Syntax
 ```txt
->>Summary
+=>Summary
 text...
->>
+=>
 ```
 #### Preview
 <img src="./images/preview5.png" width="600">
