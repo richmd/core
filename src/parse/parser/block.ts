@@ -36,7 +36,7 @@ type Prev = {
   values: Convert[];
 };
 
-export const parser = (str: string) => {
+export const parser = (str: string, useSlide: boolean = true) => {
   const ast: object[] & Convert[] = [];
 
   let stack = "";
@@ -66,7 +66,7 @@ export const parser = (str: string) => {
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
     if (ast.length === 0 && pageMode === PAGE_MODE_DEFAULT) {
-      if (SLIDE_MODE_REGEX.test(line)) {
+      if (SLIDE_MODE_REGEX.test(line) && useSlide) {
         ast.push(new nodes.Mode("slide"));
         pageMode = PAGE_MODE_SLIDE;
         mode = MODE_SLIDE;
