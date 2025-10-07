@@ -166,9 +166,9 @@ This is danger color block.
 ### Dropdown Details
 #### Syntax
 ```txt
-:>Summary
+>>Summary
 text...
-:>
+>>
 ```
 #### Preview
 <img src="./images/preview5.png" width="600">
@@ -177,51 +177,6 @@ text...
 #### Syntax
 ```txt
 @[movie](./movie.mp4)
-```
-
-### Custom HTML Tag
-It creaties custom HTML Tag.
-(defalut tag `span`)
-
-#### Syntax
-```txt
-::<Tag Name>[.ClassName]
-
-::
-```
-
-#### Example
-```txt
-::menu
-menu
-::
-
-::article.className
-article
-::
-
-::div
-div
-::
-
-# only className
-::.className
-only Class
-::
-```
-##### Preview
-```html
-<menu>
-<span class="span">menu</span>
-</menu>
-
-<article class="className">
-<span class="span">article</span>
-</article>
-
-<div>
-<span class="span">div</span>
-</div>
 ```
 
 ## Richmd Slide Mode (v4)

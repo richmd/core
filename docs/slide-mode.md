@@ -18,10 +18,10 @@ pnpm add @richmd/vue # Use Vue
 In this mode, there are certain rules for writing text.
 
 ## Using Slide Mode
-To use slide mode, declare `:use slide:` on the first line.
+To use slide mode, declare `|use slide|` on the first line.
 
 ```txt
-:use slide:
+|use slide|
 
 ...
 ```
@@ -34,29 +34,29 @@ For slides, you need to define text alignment, display content layout, and theme
 
 #### Center Alignment
 ```txt
-:---:
-:---:
+||---||
+||---||
 ```
 
 #### Left Alignment
 ```txt
-:<--:
-:---:
+||<--||
+||---||
 ```
 
 #### Right Alignment
 
 ```txt
-:-->:
-:---:
+||-->||
+||---||
 ```
 
 #### `title` Layout (Vertically Centered)
 
 ```txt
 ↓ In this case, it will be centered both vertically and horizontally
-:---:title
-:---:
+||---||title
+||---||
 ```
 
 #### `content` Layout
@@ -64,8 +64,8 @@ This is the default layout with vertical top alignment.
 
 ```txt
 ↓ In this case, text is left-aligned and vertically top-aligned
-:<--:content
-:---:
+||<--||content
+||---||
 ```
 
 #### `theme` Option
@@ -73,25 +73,25 @@ After defining the layout, you can define a theme option. Themes are predefined.
 
 ```
 ↓ dark will be applied.
-:---:title.dark
-:---:
+||---||title.dark
+||---||
 ```
 
 ### Displaying Content in Slides
 It's easy to display content in defined slides. Just write markdown within the slide.
 
 ```txt
-:---:title.dark
+||---||title.dark
 # Title
 
 author: demo
-:---:
+||---||
 
-:<--:content.dark
+||<--||content.dark
 # Content
 
 **content**
-:---:
+||---||
 ```
 
 ### :warning: Invalid Writing
@@ -100,11 +100,11 @@ author: demo
 ```txt
 # hoge <-- Not parsed
 
-:---:title.dark
+||---||title.dark
 # Title
 
 author: demo
-:---:
+||---||
 ```
 
 ## Themes
