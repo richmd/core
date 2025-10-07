@@ -40,6 +40,12 @@
 [name](path)
 ```
 
+### emoji
+```txt
+:tada:
+:smile:
+```
+
 ### List
 ```markdown
 - list1
