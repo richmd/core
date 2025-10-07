@@ -15,10 +15,10 @@ const COLORBLOCK_REGEX = /^[\=]{3}(.*)|[\=]{3}(.*)\b[\l]+\b$/;
 const START_DETAILS_REGEX = /^\>\>(\b[\w_\.\/]+\b|[\u3040-\u309F\u30A0-\u30FF\u3400-\u9FFF])+$/;
 const END_DETAILS_REGEX = /^\>\>$/;
 const SLIDE_MODE_REGEX = /^\|use\sslide\|$/
-const START_SLIDE_CENTER_REGEX = /^\|\-{3}\|(title|content)|\|\-{3}\|(title|content)\.\b[a-z]+\b$/;
-const START_SLIDE_LEFT_REGEX = /^\|\<\-{2}\|(title|content)|\|\<\-{2}\|(title|content)\.\b[a-z]+\b$/;
-const START_SLIDE_RIGHT_REGEX = /^\|\-{2}\>\|(title|content)|\|\-{2}\>\|(title|content)\.\b[a-z]+\b$/;
-const END_SLIDE_REGEX = /^\|\-{3}\|$/;
+const START_SLIDE_CENTER_REGEX = /^\|{2}\-{3}\|{2}(title|content)|\|{2}\-{3}\|{2}(title|content)\.\b[a-z]+\b$/;
+const START_SLIDE_LEFT_REGEX = /^\|{2}\<\-{2}\|{2}(title|content)|\|{2}\<\-{2}\|{2}(title|content)\.\b[a-z]+\b$/;
+const START_SLIDE_RIGHT_REGEX = /^\|{2}\-{2}\>\|{2}(title|content)|\|{2}\-{2}\>\|{2}(title|content)\.\b[a-z]+\b$/;
+const END_SLIDE_REGEX = /^\|{2}\-{3}\|{2}$/;
 const URL_REGEX = /^\bhttps?:\/\/(?:www\.)?[a-zA-Z0-9\-._~:/?#[@\]!$&'()*+,;=%]+\b$/;
 const MODE_DEFAULT = 0;
 const MODE_CODE = 1;
