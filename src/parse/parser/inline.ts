@@ -14,6 +14,7 @@ const MODE_LINK = 9;
 const MODE_INLINE_CODE = 10;
 const MODE_INLINE_KATEX = 11;
 const MODE_VIDEO = 12;
+const MODE_EMOJI = 13;
 
 type Prev = {
   value: string;
@@ -257,6 +258,16 @@ export default (text: string[] | string) => {
           continue;
         }
         break;
+      case ":":
+         if (mode === MODE_EMOJI) {
+          ast.push(new nodes.Emoji(stack));
+          mode = MODE_DEFAULT;
+        } else {
+          ast.push(new nodes.Text(stack));
+          mode = MODE_EMOJI;
+        }
+        stack = "";
+        continue;
       default:
         stack += char;
         break;

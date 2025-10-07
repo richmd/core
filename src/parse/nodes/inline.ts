@@ -133,6 +133,15 @@ class InlineKatex extends Node {
   }
 }
 
+class Emoji extends Node {
+  value: string;
+
+  constructor(text: string) {
+    super("emoji", "inline");
+    this.value = text;
+  }
+}
+
 export default {
   Text,
   Html,
@@ -146,4 +155,5 @@ export default {
   Video,
   Link,
   InlineKatex,
+  Emoji,
 };
