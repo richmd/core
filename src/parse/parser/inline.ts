@@ -259,6 +259,15 @@ export default (text: string[] | string) => {
         }
         break;
       case ":":
+        if (mode === MODE_INLINE_CODE || 
+            mode === MODE_INLINE_KATEX ||
+            mode === MODE_VIDEO ||
+            mode === MODE_IMAGE ||
+            mode === MODE_LINK) {
+          stack += char;
+          continue;
+        }
+
          if (mode === MODE_EMOJI) {
           ast.push(new nodes.Emoji(stack));
           mode = MODE_DEFAULT;
