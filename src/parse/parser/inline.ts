@@ -82,7 +82,7 @@ export default (text: string[] | string) => {
         }
         continue;
       case "_":
-        if (mode === MODE_VIDEO || mode === MODE_IMAGE || mode === MODE_LINK) {
+        if (mode === MODE_VIDEO || mode === MODE_IMAGE || mode === MODE_LINK || mode === MODE_EMOJI) {
           stack += char;
           continue;
         }
