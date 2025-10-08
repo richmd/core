@@ -274,15 +274,18 @@ export default (text: string[] | string) => {
           continue;
         }
 
-        if (mode === MODE_EMOJI) {
+        const nextStrRegex = /^[a-z0-9_]$/;
+
+        if (text[i + 1] && nextStrRegex.test(text[i + 1])) {
+          mode = MODE_EMOJI;
+          stack = "";
+          continue;
+        } else if (mode === MODE_EMOJI && text[i - 1] && nextStrRegex.test(text[i - 1])) {
           ast.push(new nodes.Emoji(stack));
           mode = MODE_DEFAULT;
-        } else {
-          ast.push(new nodes.Text(stack));
-          mode = MODE_EMOJI;
+          stack = "";
+          break;
         }
-        stack = "";
-        break;
       default:
         stack += char;
         break;
