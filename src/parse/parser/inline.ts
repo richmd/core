@@ -15,6 +15,7 @@ const MODE_INLINE_CODE = 10;
 const MODE_INLINE_KATEX = 11;
 const MODE_VIDEO = 12;
 const MODE_EMOJI = 13;
+const MODE_HTML = 14;
 
 type Prev = {
   value: string;
@@ -162,6 +163,7 @@ export default (text: string[] | string) => {
         if (!helper.isEmpty(stack)) {
           if (html.length === 0) {
             ast.push(new nodes.Text(stack));
+            mode = MODE_HTML;
           } else {
             html[html.length - 1] += stack;
           }
@@ -180,10 +182,13 @@ export default (text: string[] | string) => {
         if (stack[1] === "/") {
           const h = html.pop() + stack;
           ast.push(new nodes.Html(h));
+          mode = MODE_DEFAULT;
         } else if (stack[1] === "!") {
           ast.push(new nodes.HtmlComment(stack));
+          mode = MODE_DEFAULT;
         } else if (stack === "<") {
           ast.push(new nodes.Text(stack));
+          mode = MODE_HTML;
         } else {
           html.push(stack);
         }
@@ -263,12 +268,13 @@ export default (text: string[] | string) => {
             mode === MODE_INLINE_KATEX ||
             mode === MODE_VIDEO ||
             mode === MODE_IMAGE ||
-            mode === MODE_LINK) {
+            mode === MODE_LINK ||
+            mode === MODE_HTML) {
           stack += char;
           continue;
         }
 
-         if (mode === MODE_EMOJI) {
+        if (mode === MODE_EMOJI) {
           ast.push(new nodes.Emoji(stack));
           mode = MODE_DEFAULT;
         } else {
@@ -276,7 +282,7 @@ export default (text: string[] | string) => {
           mode = MODE_EMOJI;
         }
         stack = "";
-        continue;
+        break;
       default:
         stack += char;
         break;
